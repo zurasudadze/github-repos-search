@@ -1,10 +1,11 @@
 import {useEffect, useState} from "react";
 
 export const useLocalStorageState = (key, defaultValue) => {
-  const [state, setState] = useState(defaultValue);
+  const storedValue = JSON.parse(localStorage.getItem(key));
+
+  const [state, setState] = useState(storedValue || defaultValue);
 
   useEffect(() => {
-    const storedValue = JSON.parse(localStorage.getItem(key));
     if (storedValue) {
       setState(storedValue);
     }

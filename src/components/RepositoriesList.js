@@ -11,22 +11,18 @@ import {Link} from "react-router-dom";
 import RepositoriesTableFooter from "./RepositoriesTableFooter";
 
 const RepositoriesList = ({
-  isLoading,
   isError,
   repos,
   filters,
   setFilters
 }) => {
 
-
-  if (isError) return <div>Error loading data!</div>
-
+  if (isError) return <div style={{color: "red"}}>Error loading data!</div>
 
   const handleChangePage = (event, newPage) => {
-    console.log(filters)
     setFilters((prevState) => ({
       ...prevState,
-      page: newPage,
+      page: newPage + 1
     }));
   };
 
@@ -34,7 +30,6 @@ const RepositoriesList = ({
     setFilters((prevState) => ({
       ...prevState,
       rowsPerPage: parseInt(event.target.value, 10),
-      page: 0,
     }));
   };
 
@@ -64,11 +59,7 @@ const RepositoriesList = ({
                 <TableCell align="left">{repo.owner.login}</TableCell>
                 <TableCell align="left">{repo.id}</TableCell>
                 <TableCell align="center">
-                  <Link
-                    state={{data: repo}}
-                    to={"/repo/" + repo.id}>
-                    <Button variant="outlined">View</Button>
-                  </Link>
+                  <Button variant="outlined" component={Link} state={{data: repo}} to={"/repo/" + repo.id}>View</Button>
                 </TableCell>
 
               </TableRow>
@@ -76,14 +67,12 @@ const RepositoriesList = ({
           </TableBody>
         </Table>
       </TableContainer>
-      {!isLoading && (
-        <RepositoriesTableFooter
-          repos={repos}
-          onPageChange={handleChangePage}
-          onRowsPerPageChange={handleChangeRowsPerPage}
-          filters={filters}
-        />
-      )}
+      <RepositoriesTableFooter
+        repos={repos}
+        onPageChange={handleChangePage}
+        onRowsPerPageChange={handleChangeRowsPerPage}
+        filters={filters}
+      />
     </>
 
   )

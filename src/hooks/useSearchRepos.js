@@ -12,11 +12,13 @@ const fetchRepos = async (filters) => {
   return data;
 }
 
-const useSearchRepos = (filters) =>
-  useQuery(["repositories", filters],
+const useSearchRepos = (filters) => {
+  return useQuery(["repositories", filters],
     () => fetchRepos(filters),
     {
-      enabled: Boolean(filters.searchTerm)
-    })
+      enabled: Boolean(filters.searchTerm),
+      keepPreviousData: true
+    });
+}
 
 export default useSearchRepos

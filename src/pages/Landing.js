@@ -22,7 +22,7 @@ const Landing = () => {
     searchTerm: ""
   });
 
-  const debouncedFilters = useDebounce(filters, 1000);
+  const debouncedFilters = useDebounce(filters, 500);
   const {data: repos, isLoading, isError, isFetching} = useSearchRepos(debouncedFilters)
 
 
@@ -36,7 +36,6 @@ const Landing = () => {
         isFetching={isFetching}
       />
       <RepositoriesList
-        isLoading={isLoading}
         isError={isError}
         repos={repos}
         filters={filters}

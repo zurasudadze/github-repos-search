@@ -21,9 +21,9 @@ const RepositoriesTableFooter = ({
             }}
             rowsPerPageOptions={[5, 10, 25]}
             component="div"
-            count={repos.total_count}
+            count={repos.total_count ?? 0}
             rowsPerPage={filters.rowsPerPage}
-            page={filters.page}
+            page={filters.page - 1}
             onPageChange={onPageChange}
             onRowsPerPageChange={onRowsPerPageChange}
           />
