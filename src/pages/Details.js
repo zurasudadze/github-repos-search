@@ -23,7 +23,7 @@ const Description = styled("div")({
   display: "flex",
   justifyContent: "space-between",
   marginTop: "2rem",
-  padding: "1rem",
+  padding: "1rem 2rem",
   border: "1px solid #ccc",
   borderRadius: "1rem"
 
