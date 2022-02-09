@@ -6,7 +6,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import {Button} from "@mui/material";
+import {Alert, Button} from "@mui/material";
 import {Link} from "react-router-dom";
 import RepositoriesTableFooter from "./RepositoriesTableFooter";
 
@@ -17,7 +17,7 @@ const RepositoriesList = ({
   setFilters
 }) => {
 
-  if (isError) return <div style={{color: "red"}}>Error loading data!</div>
+  if (isError) return <Alert severity="error" style={{width: "200px", marginTop: "1rem"}}>Error loading data!</Alert>
 
   const handleChangePage = (event, newPage) => {
     setFilters((prevState) => ({
