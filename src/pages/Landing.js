@@ -21,7 +21,7 @@ const Landing = () => {
     rowsPerPage: 5,
     searchTerm: ""
   });
-  
+
   const debouncedFilters = useDebounce(filters, 1000);
   const {data: repos, isLoading, isError, isFetching} = useSearchRepos(debouncedFilters)
 
@@ -29,12 +29,16 @@ const Landing = () => {
   return (
     <Wrapper>
       <Title>Howdy Boss! What are you searching for?</Title>
-      <Search filters={filters} setFilters={setFilters}/>
+      <Search
+        filters={filters}
+        setFilters={setFilters}
+        isloading={isLoading}
+        isFetching={isFetching}
+      />
       <RepositoriesList
         isLoading={isLoading}
         isError={isError}
         repos={repos}
-        isFetching={isFetching}
         filters={filters}
         setFilters={setFilters}
       />
